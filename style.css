@@ -219,60 +219,93 @@ body {
     flex: 1;
 }
 
-/* Subscription Options */
-.subscription-options {
+/* Subscription Plans */
+.subscription-plans {
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 24px;
 }
 
-.subscription-option {
-    cursor: pointer;
-    display: block;
-    position: relative;
-}
-
-.subscription-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.subscription-card {
-    background: var(--gray-dark);
-    border: 2px solid var(--gray-medium);
+.subscription-plan {
+    background-color: #2a2a2a;
+    border: 2px solid #404040;
     border-radius: 12px;
     padding: 20px;
+    cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
 }
 
-.subscription-option:hover .subscription-card {
-    border-color: var(--gray-light);
+.subscription-plan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 215, 96, 0.1) 0%, rgba(30, 215, 96, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.subscription-plan:hover {
+    border-color: #1ED760;
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 215, 96, 0.15);
 }
 
-.subscription-option input[type="radio"]:checked + .subscription-card {
-    border-color: var(--spotify-green);
-    background: rgba(30, 215, 96, 0.1);
+.subscription-plan:hover::before {
+    opacity: 1;
 }
 
-.subscription-option input[type="radio"]:checked + .subscription-card::after {
+.subscription-plan.selected {
+    border-color: #1ED760;
+    background-color: rgba(30, 215, 96, 0.1);
+    box-shadow: 0 0 0 1px rgba(30, 215, 96, 0.3);
+}
+
+.subscription-plan.selected::before {
+    opacity: 1;
+}
+
+.subscription-plan.selected::after {
     content: '✓';
     position: absolute;
     top: 16px;
     right: 16px;
-    background: var(--spotify-green);
-    color: var(--black);
     width: 24px;
     height: 24px;
+    background-color: #1ED760;
+    color: #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 14px;
+    animation: checkmarkPop 0.3s ease-out;
+}
+
+@keyframes checkmarkPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Subscription Info */
+.subscription-info {
+    position: relative;
+    z-index: 1;
 }
 
 .subscription-header {
@@ -285,14 +318,13 @@ body {
 .subscription-title {
     font-size: 18px;
     font-weight: 600;
-    color: var(--white);
-    margin: 0;
+    color: #ffffff;
 }
 
 .subscription-price {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--spotify-green);
+    font-size: 18px;
+    font-weight: 700;
+    color: #1ED760;
 }
 
 .subscription-features {
@@ -301,50 +333,24 @@ body {
     gap: 8px;
 }
 
-.subscription-features .feature {
-    color: var(--gray-text);
+.feature {
     font-size: 14px;
-    line-height: 1.4;
+    color: #b3b3b3;
+    transition: color 0.2s ease;
 }
 
-.selected-subscription-info {
-    margin-top: 24px;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive adjustments for subscription options */
-@media (max-width: 768px) {
-    .subscription-card {
-        padding: 16px;
-    }
-    
-    .subscription-title {
-        font-size: 16px;
-    }
-    
-    .subscription-price {
-        font-size: 14px;
-    }
-    
-    .subscription-features .feature {
-        font-size: 13px;
-    }
+.subscription-plan:hover .feature,
+.subscription-plan.selected .feature {
+    color: #ffffff;
 }
 
 /* Warning Box */
 .warning-box {
-    background:
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
 }
 
 .warning-header {
@@ -599,6 +605,10 @@ body {
         gap: 8px;
     }
     
+    .subscription-plan {
+        padding: 16px;
+    }
+    
     .footer-links {
         flex-direction: column;
         gap: 8px;
@@ -625,6 +635,18 @@ body {
     .fee-price {
         font-size: 28px;
     }
+    
+    .subscription-plan {
+        padding: 12px;
+    }
+    
+    .subscription-title {
+        font-size: 16px;
+    }
+    
+    .subscription-price {
+        font-size: 16px;
+    }
 }
 
 /* Animations */
@@ -642,6 +664,26 @@ body {
 .step.active {
     animation: fadeIn 0.3s ease-out;
 }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subscription-plan {
+    animation: slideInUp 0.4s ease-out;
+}
+
+.subscription-plan:nth-child(1) { animation-delay: 0.1s; }
+.subscription-plan:nth-child(2) { animation-delay: 0.2s; }
+.subscription-plan:nth-child(3) { animation-delay: 0.3s; }
+.subscription-plan:nth-child(4) { animation-delay: 0.4s; }
 
 /* Loading state */
 .btn.loading {
@@ -667,5 +709,22 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Pulse animation for selected plan */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(30, 215, 96, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(30, 215, 96, 0);
+    }
+}
+
+.subscription-plan.selected {
+    animation: pulse 2s infinite;
 }
 
