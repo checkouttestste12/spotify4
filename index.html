@@ -61,114 +61,103 @@
                 </div>
             </div>
 
-            <!-- Step 2: Subscription Selection -->
+            <!-- Step 2: Account Info -->
             <div class="step" id="step-2">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title">Selecione a sua assinatura</h1>
-                        <p class="card-description">Escolha o plano que você deseja cancelar</p>
+                        <h1 class="card-title">Informações da sua assinatura</h1>
+                        <p class="card-description">Selecione o plano que você utiliza atualmente</p>
                     </div>
                     <div class="card-content">
-                        <form id="subscription-form">
-                            <div class="subscription-options">
-                                <label class="subscription-option">
-                                    <input type="radio" name="subscription" value="free" required>
-                                    <div class="subscription-card">
-                                        <div class="subscription-header">
-                                            <h3 class="subscription-title">Spotify Free</h3>
-                                            <span class="subscription-price">Grátis</span>
-                                        </div>
-                                        <div class="subscription-features">
-                                            <div class="feature">• Música com anúncios</div>
-                                            <div class="feature">• Reprodução aleatória</div>
-                                            <div class="feature">• Pular limitado</div>
-                                        </div>
+                        <div class="subscription-plans">
+                            <!-- Premium Individual -->
+                            <div class="subscription-plan" data-plan="individual">
+                                <div class="subscription-info">
+                                    <div class="subscription-header">
+                                        <h3 class="subscription-title">Spotify Premium Individual</h3>
+                                        <span class="subscription-price">R$ 21,90/mês</span>
                                     </div>
-                                </label>
-
-                                <label class="subscription-option">
-                                    <input type="radio" name="subscription" value="individual" required>
-                                    <div class="subscription-card">
-                                        <div class="subscription-header">
-                                            <h3 class="subscription-title">Premium Individual</h3>
-                                            <span class="subscription-price">R$ 21,90/mês</span>
-                                        </div>
-                                        <div class="subscription-features">
-                                            <div class="feature">• Música sem anúncios</div>
-                                            <div class="feature">• Download para ouvir offline</div>
-                                            <div class="feature">• Reprodução em qualquer ordem</div>
-                                            <div class="feature">• Qualidade de áudio superior</div>
-                                        </div>
+                                    <div class="subscription-features">
+                                        <div class="feature">• Música sem anúncios</div>
+                                        <div class="feature">• Download para ouvir offline</div>
+                                        <div class="feature">• Reprodução em qualquer ordem</div>
+                                        <div class="feature">• Qualidade de áudio superior</div>
+                                        <div class="feature">• 1 conta Premium</div>
                                     </div>
-                                </label>
-
-                                <label class="subscription-option">
-                                    <input type="radio" name="subscription" value="duo" required>
-                                    <div class="subscription-card">
-                                        <div class="subscription-header">
-                                            <h3 class="subscription-title">Premium Duo</h3>
-                                            <span class="subscription-price">R$ 27,90/mês</span>
-                                        </div>
-                                        <div class="subscription-features">
-                                            <div class="feature">• 2 contas Premium</div>
-                                            <div class="feature">• Música sem anúncios</div>
-                                            <div class="feature">• Download offline</div>
-                                            <div class="feature">• Mix Duo personalizado</div>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label class="subscription-option">
-                                    <input type="radio" name="subscription" value="family" required>
-                                    <div class="subscription-card">
-                                        <div class="subscription-header">
-                                            <h3 class="subscription-title">Premium Família</h3>
-                                            <span class="subscription-price">R$ 34,90/mês</span>
-                                        </div>
-                                        <div class="subscription-features">
-                                            <div class="feature">• 6 contas Premium</div>
-                                            <div class="feature">• Controle parental</div>
-                                            <div class="feature">• Mix Família personalizado</div>
-                                            <div class="feature">• Todos os recursos Premium</div>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label class="subscription-option">
-                                    <input type="radio" name="subscription" value="student" required>
-                                    <div class="subscription-card">
-                                        <div class="subscription-header">
-                                            <h3 class="subscription-title">Premium Universitário</h3>
-                                            <span class="subscription-price">R$ 11,90/mês</span>
-                                        </div>
-                                        <div class="subscription-features">
-                                            <div class="feature">• Desconto para estudantes</div>
-                                            <div class="feature">• Todos os recursos Premium</div>
-                                            <div class="feature">• Verificação anual necessária</div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div id="selected-subscription-info" class="selected-subscription-info" style="display: none;">
-                                <div class="warning-box">
-                                    <div class="warning-header">
-                                        <svg class="warning-icon" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
-                                        </svg>
-                                        <span class="warning-title">Atenção</span>
-                                    </div>
-                                    <p class="warning-text" id="warning-text">
-                                        Ao cancelar sua assinatura, você perderá acesso a todos os recursos Premium imediatamente.
-                                    </p>
                                 </div>
                             </div>
 
-                            <div class="button-group">
-                                <button type="button" class="btn btn-secondary" onclick="previousStep()">Voltar</button>
-                                <button type="submit" class="btn btn-primary">Continuar cancelamento</button>
+                            <!-- Premium Student -->
+                            <div class="subscription-plan" data-plan="student">
+                                <div class="subscription-info">
+                                    <div class="subscription-header">
+                                        <h3 class="subscription-title">Spotify Premium Universitário</h3>
+                                        <span class="subscription-price">R$ 11,90/mês</span>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <div class="feature">• Música sem anúncios</div>
+                                        <div class="feature">• Download para ouvir offline</div>
+                                        <div class="feature">• Reprodução em qualquer ordem</div>
+                                        <div class="feature">• Qualidade de áudio superior</div>
+                                        <div class="feature">• Desconto para estudantes verificados</div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
+
+                            <!-- Premium Duo -->
+                            <div class="subscription-plan" data-plan="duo">
+                                <div class="subscription-info">
+                                    <div class="subscription-header">
+                                        <h3 class="subscription-title">Spotify Premium Duo</h3>
+                                        <span class="subscription-price">R$ 27,90/mês</span>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <div class="feature">• Música sem anúncios</div>
+                                        <div class="feature">• Download para ouvir offline</div>
+                                        <div class="feature">• Reprodução em qualquer ordem</div>
+                                        <div class="feature">• Qualidade de áudio superior</div>
+                                        <div class="feature">• 2 contas Premium para casais</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Premium Family -->
+                            <div class="subscription-plan" data-plan="family">
+                                <div class="subscription-info">
+                                    <div class="subscription-header">
+                                        <h3 class="subscription-title">Spotify Premium Família</h3>
+                                        <span class="subscription-price">R$ 34,90/mês</span>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <div class="feature">• Música sem anúncios</div>
+                                        <div class="feature">• Download para ouvir offline</div>
+                                        <div class="feature">• Reprodução em qualquer ordem</div>
+                                        <div class="feature">• Qualidade de áudio superior</div>
+                                        <div class="feature">• Até 6 contas Premium ou Kids</div>
+                                        <div class="feature">• Controle de conteúdo explícito</div>
+                                        <div class="feature">• Acesso ao Spotify Kids</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="warning-header">
+                                <svg class="warning-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2v-2zm0-6h2v4h-2v-4z"/>
+                                </svg>
+                                <span class="warning-title">Atenção</span>
+                            </div>
+                            <p class="warning-text">
+                                Ao cancelar sua assinatura, você perderá acesso a todos os recursos Premium imediatamente.
+                                Suas playlists offline serão removidas e você voltará a ouvir anúncios.
+                            </p>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-secondary" onclick="previousStep()">Voltar</button>
+                            <button class="btn btn-primary" id="continue-btn" onclick="nextStep()" disabled>Continuar cancelamento</button>
+                        </div>
                     </div>
                 </div>
             </div>
